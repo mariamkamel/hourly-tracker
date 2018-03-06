@@ -1,0 +1,27 @@
+{
+  "name": "hourly-tracker",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "author": "Khaled Mohamed <Khal3d.Mohamed@gmail.com>",
+  "contributors": [
+    "Mariam Kamel <Mariammkamel98@gamil.com>"
+  ],
+  "dependencies": {
+    "react": "16.3.0-alpha.1",
+    "react-native": "0.54.0"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.1",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.2",
+    "react-test-renderer": "16.3.0-alpha.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
