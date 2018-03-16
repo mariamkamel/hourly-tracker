@@ -43,10 +43,11 @@ export default class HourlyTracker extends Component {
               </ListItem>}
             renderLeftHiddenRow={(data,rowId) =>
               <Button onEndEditing = {(text)=>this._editRow(rowId,text)}>
+                <Icon active name="information-circle" />
               </Button> }
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>
               <Button full danger onPress={() => this._deleteRow(secId, rowId, rowMap)}>
-                <Icon active name="trash" />
+                <Icon active name="md-trash" />
               </Button>}
             leftOpenValue={75}
             rightOpenValue={-75}
