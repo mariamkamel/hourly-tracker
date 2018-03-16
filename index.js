@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import HourlyTracker from './app/HourlyTracker';
 
-AppRegistry.registerComponent('HourlyTracker', () => App);
+AppRegistry.registerComponent('HourlyTracker', () => HourlyTracker);
