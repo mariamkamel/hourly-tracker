@@ -17,7 +17,19 @@ export default class HourlyTracker extends Component {
   }
 
   _addTask() {
+    // TODO: Open Add Modal
+    // TODO: Get User input
 
+    // Validating Input (Checking for Duplicate)
+    let taskName = 'New Task';
+    if (!this._validateTaskName(taskName)) {
+      alert('Task names cannot be repeated.');
+      return;
+    }
+
+    // TODO: Add in the AsyncStorage
+    tasks.splice(0, 0, taskName);
+    this.setState({ listViewData: tasks });
   }
 
   _deleteRow(secId, rowId, rowMap) {
@@ -31,13 +43,22 @@ export default class HourlyTracker extends Component {
 
   }
 
+  _validateTaskName(taskName) {
+    // TODO: Check in the AsyncStorage
+    // Check Duplicate Task Names
+    if (tasks.indexOf(taskName) != -1)  // Duplicate Found
+      return false;
+
+    return true;  // No Duplicate
+  }
+
   render() {
     return (
       <Container>
         <Content>
           <Header noShadow style={{ backgroundColor: '#fff' }}>
             <Body>
-              <Title style={{ color:'#000' }}>Tasks</Title>
+              <Title style={{ color: '#000' }}>Tasks</Title>
             </Body>
           </Header>
           <List
@@ -58,12 +79,12 @@ export default class HourlyTracker extends Component {
             rightOpenValue={-75}
           />
         </Content>
-          <Button rounded 
-            style={{ position: 'absolute', bottom: 40, right: 20, width: 60, height: 60, justifyContent: 'center' }}
-            onPress={() => { this._addTask() }}
-          >
-              <Icon name="md-add" />
-          </Button>
+        <Button rounded
+          style={{ position: 'absolute', bottom: 40, right: 20, width: 60, height: 60, justifyContent: 'center' }}
+          onPress={() => { this._addTask() }}
+        >
+          <Icon name="md-add" />
+        </Button>
       </Container>
     );
   }
