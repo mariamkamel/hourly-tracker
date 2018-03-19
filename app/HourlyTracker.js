@@ -11,49 +11,53 @@ export default class HourlyTracker extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       listViewData: tasks,
-      dialogTitle: 'd',
+      dialogTitle: 'Dialog Title',
       currentlyEditingTask: -1
     };
   }
 
   _addTask(taskName) {
-    // TODO: Open Add Modal
-    // TODO: Get User input
-
     // Validating Input (Checking for Duplicate)
-    let taskName = 'New Task';
     if (!this._validateTaskName(taskName)) {
       alert('Task names cannot be repeated.');
       return;
     }
 
     // TODO: Add in the AsyncStorage
-    tasks.splice(0, 0, taskName);
-    this.setState({ listViewData: tasks });
+    // Adding to the Current Tasks List
+    const newData = [...this.state.listViewData]
+    newData.splice(0, 0, taskName);
+    this.setState({ listViewData: newData });
   }
 
-  _deleteRow(secId, rowId, rowMap) {
+  _deleteTask(secId, rowId, rowMap) {
+    // TODO: Delete in the AsyncStorage
+    // TODO: Making a Confirm Alert before Deletion
+    // Deleting from the UI
     rowMap[`${secId}${rowId}`].props.closeRow();
+    // Deleting in the Current Tasks List
     const newData = [...this.state.listViewData];
     newData.splice(rowId, 1);
-    console.log(rowId, secId);
     this.setState({ listViewData: newData });
   }
 
   _editTask(rowId, text) {
+    // TODO: Edit in the AsyncStorage
+
+    // Editing in the Current Tasks List
     let newData = [...this.state.listViewData];
     newData[rowId] = text;
-    console.log(rowId);
     this.setState({ listViewData: newData });
   }
 
   _validateTaskName(taskName) {
     // TODO: Check in the AsyncStorage
     // Check Duplicate Task Names
-    if (tasks.indexOf(taskName) != -1)  // Duplicate Found
+    if (tasks.indexOf(taskName) != -1)
+      // Duplicate Found
       return false;
 
-    return true;  // No Duplicate
+    return true; // No Duplicate
   }
 
   render() {
