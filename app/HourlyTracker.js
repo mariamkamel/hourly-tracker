@@ -16,9 +16,23 @@ export default class HourlyTracker extends Component {
     };
   }
 
-  _addTask(taskName) {}
+  _addTask(taskName) {
+    // TODO: Open Add Modal
+    // TODO: Get User input
 
-  _deleteTask(secId, rowId, rowMap) {
+    // Validating Input (Checking for Duplicate)
+    let taskName = 'New Task';
+    if (!this._validateTaskName(taskName)) {
+      alert('Task names cannot be repeated.');
+      return;
+    }
+
+    // TODO: Add in the AsyncStorage
+    tasks.splice(0, 0, taskName);
+    this.setState({ listViewData: tasks });
+  }
+
+  _deleteRow(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.state.listViewData];
     newData.splice(rowId, 1);
@@ -31,6 +45,15 @@ export default class HourlyTracker extends Component {
     newData[rowId] = text;
     console.log(rowId);
     this.setState({ listViewData: newData });
+  }
+
+  _validateTaskName(taskName) {
+    // TODO: Check in the AsyncStorage
+    // Check Duplicate Task Names
+    if (tasks.indexOf(taskName) != -1)  // Duplicate Found
+      return false;
+
+    return true;  // No Duplicate
   }
 
   render() {
@@ -70,7 +93,6 @@ export default class HourlyTracker extends Component {
             rightOpenValue={-75}
           />
         </Content>
-
         <Button
           rounded
           style={{ position: 'absolute', bottom: 40, right: 20, width: 60, height: 60, justifyContent: 'center' }}
