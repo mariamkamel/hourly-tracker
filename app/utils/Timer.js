@@ -66,6 +66,7 @@ export default class Timer {
     _validateTime() {  // Parsing the current time to a valid one
         this._minutes += Math.floor(this._seconds / 60);
         this._hours += Math.floor(this._minutes / 60);
+        this._minutes %= 60;
         this._seconds %= 60;
     }
 }
